@@ -22,6 +22,8 @@ router.put('/updateclass/:cid/teacher/:tid', Classroom.addteacher);
 router.put('/updateclass/:cid/student/:sid', Classroom.addstudents);
 //Add Posts
 router.put('/updateclass/:cid/post/:pid', Classroom.addposts);
+//Add Meetings
+router.put('/updateclass/:cid/meeting/:mid', Classroom.addmeetings);
 //Update Password
 router.put('/updateclass/:id/password/:password', Classroom.updateclasspassword);
 

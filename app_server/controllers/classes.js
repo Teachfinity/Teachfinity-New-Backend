@@ -75,7 +75,23 @@ module.exports.addposts = function(req, res, next) {
     Classroom.findOneAndUpdate({_id: req.params.cid}, {
             "$push": {
                 "posts": {
-                    "pid": req.params.sid
+                    "pid": req.params.pid
+                }
+            }
+        }, { new: true, upsert: false },
+        function(error, results) {
+            if (error) {
+                return next(error);
+            }
+            // Respond with valid data
+            res.json(results);
+        });
+}
+module.exports.addmeetings = function(req, res, next) {
+    Classroom.findOneAndUpdate({_id: req.params.cid}, {
+            "$push": {
+                "meetings": {
+                    "mid": req.params.mid
                 }
             }
         }, { new: true, upsert: false },

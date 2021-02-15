@@ -33,6 +33,14 @@ var classroomSchema = new Schema({
                 ref: 'Post'
             }
         }]
+    },
+    meetings: {
+        type: [{
+            mid:{
+                type: mongoose.Types.ObjectId,
+                ref: "Meeting"
+            }
+        }]
     }
 });
 
