@@ -8,6 +8,8 @@ router.get('/getmeetings', Meeting.getmeetings);
 router.get('/getmeetings/:id', Meeting.getmeetingsbyid);
 //Get meeting by name
 router.get('/getmeetings/name/:name', Meeting.getmeetingsbyname);
+//Get meeting by classid
+router.get('/getmeetings/class/:cid', Meeting.getmeetingsbyclass);
 
 //Adding meeting
 router.post('/addmeeting', Meeting.newmeeting);

@@ -37,6 +37,15 @@ module.exports.getmeetingsbyname = function(req, res, next) {
         res.json(results);
     });
 }
+module.exports.getmeetingsbyclass = function (req, res, next) {
+    Meeting.find({classroom: req.params.cid}).exec(function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results);
+    });
+}
 module.exports.updatemeetingname = function(req, res, next) {
     Meeting.findByIdAndUpdate(req.params.id, {name: req.params.name}, function(error, results) {
         if (error) {
