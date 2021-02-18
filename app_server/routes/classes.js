@@ -10,6 +10,8 @@ router.get('/getclasses/:id', Classroom.getclassesbyid);
 router.get('/getclasses/name/:name', Classroom.getclassesbyname);
 //Get class by code
 router.get('/getclasses/code/:code', Classroom.getclassesbycode);
+//Get students by class id
+router.get('/getstudents/class/:cid', Classroom.getstudentsbyclass);
 
 //Adding class
 router.post('/addclass', Classroom.newclass);

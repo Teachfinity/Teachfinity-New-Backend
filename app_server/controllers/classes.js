@@ -46,6 +46,15 @@ module.exports.getclassesbycode = function(req, res, next) {
         res.json(results);
     });
 }
+module.exports.getstudentsbyclass = function(req, res, next) {
+    Classroom.find({_id: req.params.cid}).populate('students.sid').exec(function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results[0].students);
+    });
+}
 module.exports.updateclassname = function(req, res, next) {
     Classroom.findByIdAndUpdate(req.params.id, {name: req.params.name}, function(error, results) {
         if (error) {
