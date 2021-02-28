@@ -19,8 +19,17 @@ module.exports.getposts = function (req, res, next) {
         res.json(results);
     });
 }
+module.exports.getpostsbyid = function (req, res, next) {
+    Post.find({_id: req.params.id}).exec(function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results[0]);
+    });
+}
 module.exports.getpostsbyclass = function (req, res, next) {
-    Post.find({classroom: req.params.cid}).sort("createdAt").exec(function (error, results) {
+    Post.find({classroom: req.params.cid}).sort({"createdAt": "desc"}).exec(function (error, results) {
         if (error) {
             return next(error);
         }
@@ -48,6 +57,41 @@ module.exports.updatepostdes = function(req, res, next) {
 };
 module.exports.image = function(req, res, next) {
     Post.findByIdAndUpdate(req.params.id, {imagePath: req.params.image}, function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results);
+    });
+};
+module.exports.likes = function(req, res, next) {
+    Post.findByIdAndUpdate(req.params.id, {$inc: {likes: 1}}, function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results);
+    });
+};
+module.exports.unlike = function(req, res, next) {
+    Post.findByIdAndUpdate(req.params.id, {$inc: {likes: -1}}, function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results);
+    });
+};
+module.exports.comment = function(req, res, next) {
+    Post.findByIdAndUpdate(req.params.id, {
+        "$push": {
+            "comments": {
+                "commentor": req.params.name,
+                "comment": req.params.comment
+            }
+        }
+    }, { new: true, upsert: false },
+    function(error, results) {
         if (error) {
             return next(error);
         }

@@ -10,11 +10,29 @@ var postSchema = new Schema({
         default: null
     },
     creatorName: {
-          type: String,
+        type: String,
     },
     creatorDisplay: {
         type: String,
     },
+    likes: {
+        type: Number,
+        default: 0
+    },
+    comments: {
+        type: [{
+            commentor: {
+                type: String
+            },
+            comment: {
+                type: String
+            },
+            time: {
+                type: Date,
+                default: Date.now
+            }
+        }],
+    }, 
     classroom:{
         type: mongoose.Types.ObjectId,
         ref: 'Classroom'
