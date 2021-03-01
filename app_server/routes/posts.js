@@ -17,6 +17,10 @@ router.post('/addpost', Post.newpost);
 router.put('/updatepost/:id/title/:title', Post.updateposttitle);
 //Update Post Description
 router.put('/updatepost/:id/des/:des', Post.updatepostdes);
+//Update Creator Name
+router.put('/updatepost/:id/creatorname/:name', Post.updatecreatorname);
+//Update Creator Display
+router.put('/updatepost/:id/creatordp', Post.updatecreatordp);
 //Update/Add Image
 router.put('/updatepost/:id/image/:image', Post.image);
 //Like Post

@@ -88,7 +88,7 @@ module.exports.updateuserpassword = function(req, res, next) {
     });
 };
 module.exports.updateprofilepic = function(req, res, next) {
-    User.findOneAndUpdate({uid: req.params.id}, {profilePicture: req.params.profilePic}, function(error, results) {
+    User.findOneAndUpdate({uid: req.params.id}, {profilePicture: req.body.dp}, function(error, results) {
         if (error) {
             return next(error);
         }

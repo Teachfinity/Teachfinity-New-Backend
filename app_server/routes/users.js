@@ -21,7 +21,7 @@ router.put('/updateuser/:id/classroomsJoined/:cid', User.updateclassesjoined);
 //Update Password
 router.put('/updateuser/:id/password/:password', User.updateuserpassword);
 //Update Profile Pic
-router.put('/updateuser/:id/profilePic/:profilePic', User.updateprofilepic);
+router.put('/updateuser/:id/profilePic', User.updateprofilepic);
 
 //Delete User
 router.delete('/deluser/:id', User.deleteuser);

@@ -55,6 +55,24 @@ module.exports.updatepostdes = function(req, res, next) {
         res.json(results);
     });
 };
+module.exports.updatecreatorname = function(req, res, next) {
+    Post.updateMany({uid: req.params.id}, {creatorName: req.params.name}, function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results);
+    });
+};
+module.exports.updatecreatordp = function(req, res, next) {
+    Post.updateMany({uid: req.params.id}, {creatorDisplay: req.body.dp}, function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results);
+    });
+};
 module.exports.image = function(req, res, next) {
     Post.findByIdAndUpdate(req.params.id, {imagePath: req.params.image}, function(error, results) {
         if (error) {

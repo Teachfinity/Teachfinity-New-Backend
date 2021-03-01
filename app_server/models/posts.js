@@ -9,6 +9,9 @@ var postSchema = new Schema({
         type: String,
         default: null
     },
+    uid: {
+        type: String,
+    },
     creatorName: {
         type: String,
     },
