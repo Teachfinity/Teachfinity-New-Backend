@@ -126,3 +126,12 @@ module.exports.deletepost = function(req, res, next) {
         res.json(results);
     });
 }
+module.exports.deletepostbyclass = function(req, res, next) {
+    Post.deleteMany({classroom: req.params.cid}, function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results);
+    });
+}

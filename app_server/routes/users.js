@@ -23,6 +23,11 @@ router.put('/updateuser/:id/password/:password', User.updateuserpassword);
 //Update Profile Pic
 router.put('/updateuser/:id/profilePic', User.updateprofilepic);
 
+//Remove Classes Owned
+router.put('/updateuser/:id/removeclassowned/:cid', User.removeClassOwned);
+//Remove Classes Joined
+router.put('/updateuser/:id/removeclassjoined/:cid', User.removeClassJoined);
+
 //Delete User
 router.delete('/deluser/:id', User.deleteuser);
 

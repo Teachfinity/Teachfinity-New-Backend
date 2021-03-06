@@ -82,3 +82,12 @@ module.exports.deletemeeting = function(req, res, next) {
         res.json(results);
     });
 }
+module.exports.deletemeetingbyclass = function(req, res, next) {
+    Meeting.deleteMany({classroom: req.params.cid}, function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results);
+    });
+}

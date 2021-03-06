@@ -21,7 +21,10 @@ router.put('/updatemeeting/:cid/starttime/:sid', Meeting.starttime);
 //Add Students
 router.put('/updateclass/:cid/endtime/:eid', Meeting.endtime);
 
+
 //Delete Meeting
 router.delete('/delmeeting/:id', Meeting.deletemeeting);
+//Delete Meeting by Class
+router.delete('/delmeeting/class/:cid', Meeting.deletemeetingbyclass);
 
 module.exports = router;

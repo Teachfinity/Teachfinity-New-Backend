@@ -32,5 +32,7 @@ router.put('/updatepost/:id/user/:name/comment/:comment', Post.comment);
 
 //Delete Post
 router.delete('/delpost/:id', Post.deletepost);
+//Delete Post By Class
+router.delete('/delpost/class/:cid', Post.deletepostbyclass);
 
 module.exports = router;

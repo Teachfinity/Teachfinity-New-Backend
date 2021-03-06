@@ -96,6 +96,24 @@ module.exports.updateprofilepic = function(req, res, next) {
         res.json(results);
     });
 };
+module.exports.removeClassOwned = function(req, res, next) {
+    User.findOneAndUpdate({uid: req.params.id}, {$pull: {classroomsOwned:{cid: req.params.cid}}}, function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results);
+    });
+};
+module.exports.removeClassJoined = function(req, res, next) {
+    User.findOneAndUpdate({uid: req.params.id}, {$pull: {classroomsJoined:{cid: req.params.cid}}}, function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results);
+    });
+};
 module.exports.deleteuser = function(req, res, next) {
     User.findOneAndDelete({uid: req.params.id}, function(error, results) {
         if (error) {
