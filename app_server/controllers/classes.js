@@ -24,6 +24,7 @@ module.exports.getclassesbyid = function (req, res, next) {
         if (error) {
             return next(error);
         }
+        console.log(results)
         // Respond with valid data
         res.json(results[0]);
     });

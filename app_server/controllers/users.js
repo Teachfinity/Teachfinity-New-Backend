@@ -96,14 +96,28 @@ module.exports.updateprofilepic = function(req, res, next) {
         res.json(results);
     });
 };
-module.exports.removeClassOwned = function(req, res, next) {
-    User.findOneAndUpdate({uid: req.params.id}, {$pull: {classroomsOwned:{cid: req.params.cid}}}, function(error, results) {
-        if (error) {
-            return next(error);
+module.exports.removeClassOwned = async function(req, res, next) {
+    await User.findOneAndUpdate({uid: req.params.id}, {$pull: {classroomsOwned:{cid:
+       { $in: [
+            req.params.cid
+          ] 
         }
-        // Respond with valid data
-        res.json(results);
-    });
+        }}})
+    .then((response)=>{
+
+// , function(error, results) {
+//     if (error) {
+//         return next(error);
+//     }
+//     // Respond with valid data
+    
+//     console.log(results)
+//     res.json(results);
+// });
+        console.log(response)
+res.send(response)
+    })
+        
 };
 module.exports.removeClassJoined = function(req, res, next) {
     User.findOneAndUpdate({uid: req.params.id}, {$pull: {classroomsJoined:{cid: req.params.cid}}}, function(error, results) {
