@@ -12,6 +12,8 @@ router.get('/getclasses/name/:name', Classroom.getclassesbyname);
 router.get('/getclasses/code/:code', Classroom.getclassesbycode);
 //Get students by class id
 router.get('/getstudents/class/:cid', Classroom.getstudentsbyclass);
+//Get assignments by class id
+router.get('/getassignments/class/:cid', Classroom.getassignments);
 
 //Adding class
 router.post('/addclass', Classroom.newclass);
@@ -26,6 +28,10 @@ router.put('/updateclass/:cid/student/:sid', Classroom.addstudents);
 router.put('/updateclass/:cid/post/:pid', Classroom.addposts);
 //Add Meetings
 router.put('/updateclass/:cid/meeting/:mid', Classroom.addmeetings);
+//Add Assignments
+router.put('/updateclass/:cid/assignment/:aid', Classroom.addassignment);
+//Remove Assignments
+router.put('/updateclass/:cid/removeassignment/:aid', Classroom.removeassignment);
 //Update Password
 router.put('/updateclass/:id/password/:password', Classroom.updateclasspassword);
 

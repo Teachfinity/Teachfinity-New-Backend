@@ -104,16 +104,6 @@ module.exports.removeClassOwned = async function(req, res, next) {
         }
         }}})
     .then((response)=>{
-
-// , function(error, results) {
-//     if (error) {
-//         return next(error);
-//     }
-//     // Respond with valid data
-    
-//     console.log(results)
-//     res.json(results);
-// });
         console.log(response)
 res.send(response)
     })

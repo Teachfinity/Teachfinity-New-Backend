@@ -56,6 +56,15 @@ module.exports.getstudentsbyclass = function(req, res, next) {
         res.json(results[0].students);
     });
 }
+module.exports.getassignments = function(req, res, next) {
+    Classroom.find({_id: req.params.cid}).populate('assignments.aid').exec(function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results[0].assignments);
+    });
+}
 module.exports.updateclassname = function(req, res, next) {
     Classroom.findByIdAndUpdate(req.params.id, {name: req.params.name}, function(error, results) {
         if (error) {
@@ -113,6 +122,22 @@ module.exports.addmeetings = function(req, res, next) {
             res.json(results);
         });
 }
+module.exports.addassignment = function(req, res, next) {
+    Classroom.findOneAndUpdate({_id: req.params.cid}, {
+            "$push": {
+                "assignments": {
+                    "aid": req.params.aid
+                }
+            }
+        }, { new: true, upsert: false },
+        function(error, results) {
+            if (error) {
+                return next(error);
+            }
+            // Respond with valid data
+            res.json(results);
+        });
+}
 module.exports.addteacher = function(req, res, next) {
     Classroom.findOneAndUpdate({ _id: req.params.cid }, { teacher: req.params.tid }, function(error, results) {
         if (error) {
@@ -130,6 +155,15 @@ module.exports.updateclasspassword = function(req, res, next) {
         // Respond with valid data
         res.json(results);
     });
+};
+module.exports.removeassignment = async function(req, res, next) {
+    await Classroom.findOneAndUpdate({cid: req.params.id}, {$pull: {assignments:{_id: req.params.aid}
+        }})
+    .then((response)=>{
+        console.log(response)
+res.send(response)
+    })
+        
 };
 module.exports.deleteclass = function(req, res, next) {
     Classroom.findByIdAndDelete(req.params.id, function(error, results) {

@@ -41,6 +41,14 @@ var classroomSchema = new Schema({
                 ref: "Meeting"
             }
         }]
+    },
+    assignments: {
+        type: [{
+            aid:{
+                type: mongoose.Types.ObjectId,
+                ref: "Assignment"
+            }
+        }]
     }
 });
 
