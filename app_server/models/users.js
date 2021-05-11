@@ -36,6 +36,18 @@ var userSchema = new Schema({
       }
     }]
   }, 
+  assignment : {
+    type: [{
+      aid: {
+          type: mongoose.Types.ObjectId,
+          ref: 'Assignment'
+      },
+      turnedin: {
+        type: Boolean,
+        default: false
+      },
+    }]
+  }, 
 });
 
 module.exports = mongoose.model('User', userSchema);

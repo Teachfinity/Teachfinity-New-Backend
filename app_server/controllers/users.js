@@ -78,6 +78,22 @@ module.exports.updateclassesjoined = function(req, res, next) {
             res.json(results);
         });
 }
+module.exports.addassignment = function(req, res, next) {
+    User.findByIdAndUpdate(req.params.id, {
+            "$push": {
+                "assignment": {
+                    "aid": req.params.aid
+                }
+            }
+        }, { new: true, upsert: false },
+        function(error, results) {
+            if (error) {
+                return next(error);
+            }
+            // Respond with valid data
+            res.json(results);
+        });
+}
 module.exports.updateuserpassword = function(req, res, next) {
     User.findOneAndUpdate({uid: req.params.id}, {password: req.params.password}, function(error, results) {
         if (error) {
@@ -111,6 +127,15 @@ res.send(response)
 };
 module.exports.removeClassJoined = function(req, res, next) {
     User.findOneAndUpdate({uid: req.params.id}, {$pull: {classroomsJoined:{cid: req.params.cid}}}, function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results);
+    });
+};
+module.exports.removeAssignment = function(req, res, next) {
+    User.findOneAndUpdate({uid: req.params.id}, {$pull: {assignment:{aid: req.params.aid}}}, function(error, results) {
         if (error) {
             return next(error);
         }

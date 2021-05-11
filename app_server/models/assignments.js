@@ -11,6 +11,10 @@ var assignmentSchema = new Schema({
     dueTime: {
         type: Date,
     },
+    fileName: {
+        type: String,
+        default: null
+    },
     filePath: {
         type: String,
         default: null
@@ -21,6 +25,17 @@ var assignmentSchema = new Schema({
     graded:{
         type: Boolean,
         default: false,
+    },
+    studentfiles:{
+        type: [{
+            sid: {
+                type: mongoose.Types.ObjectId,
+                ref: 'Student'
+            },
+            file: {
+              type: String
+            },
+        }]
     }
 });
 

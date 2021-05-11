@@ -156,14 +156,14 @@ module.exports.updateclasspassword = function(req, res, next) {
         res.json(results);
     });
 };
-module.exports.removeassignment = async function(req, res, next) {
-    await Classroom.findOneAndUpdate({cid: req.params.id}, {$pull: {assignments:{_id: req.params.aid}
-        }})
-    .then((response)=>{
-        console.log(response)
-res.send(response)
-    })
-        
+module.exports.removeassignment = function(req, res, next) {
+    Classroom.findOneAndUpdate({_id: req.params.cid}, {$pull: {assignments:{_id: req.params.aid}}}, function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results);
+    });
 };
 module.exports.deleteclass = function(req, res, next) {
     Classroom.findByIdAndDelete(req.params.id, function(error, results) {

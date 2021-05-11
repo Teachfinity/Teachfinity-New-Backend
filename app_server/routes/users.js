@@ -22,11 +22,15 @@ router.put('/updateuser/:id/classroomsJoined/:cid', User.updateclassesjoined);
 router.put('/updateuser/:id/password/:password', User.updateuserpassword);
 //Update Profile Pic
 router.put('/updateuser/:id/profilePic', User.updateprofilepic);
+//Add Assignment
+router.put('/updateuser/:id/assignment/:aid', User.addassignment);
 
 //Remove Classes Owned
 router.put('/updateuser/:id/removeclassowned/:cid', User.removeClassOwned);
 //Remove Classes Joined
 router.put('/updateuser/:id/removeclassjoined/:cid', User.removeClassJoined);
+//Remove Assignments
+router.put('/updateuser/:id/removeassignment/:sid', User.removeAssignment);
 
 //Delete User
 router.delete('/deluser/:id', User.deleteuser);
