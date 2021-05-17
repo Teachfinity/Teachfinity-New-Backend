@@ -32,9 +32,15 @@ var assignmentSchema = new Schema({
                 type: mongoose.Types.ObjectId,
                 ref: 'Student'
             },
-            file: {
+            fileNme: {
               type: String
             },
+            fileUrl: {
+              type: String
+            },
+            submittedAt:{
+                type: String
+            }
         }]
     }
 });

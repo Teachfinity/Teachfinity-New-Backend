@@ -83,6 +83,30 @@ module.exports.updatefilepath = function(req, res, next) {
         res.json(results);
     });
 };
+module.exports.updatestudentfile = function(req, res, next) {
+    Assignment.findByIdAndUpdate(req.params.id, {
+            "$push": {
+                "studentfiles": {
+                    "sid": req.params.sid,
+                    "fileNme": req.body.fileNme,
+                    "fileUrl": req.body.fileUrl,
+                    "submittedAt": req.body.submittedAt,
+                }
+            }
+        }, { new: true, upsert: false },
+        function(error, results) {
+            // console.log("results ", results);
+            // console.log("errors ", error);
+            if (error) {
+                return next(error);
+            }
+            // Respond with valid data iska masla to nai?  sid ka sid as student object id jani chaye lakin string ja rhi shayad
+
+            
+            
+            res.json(results);
+        });
+}
 module.exports.deleteassignment = function(req, res, next) {
     Assignment.findByIdAndDelete(req.params.id, function(error, results) {
         if (error) {

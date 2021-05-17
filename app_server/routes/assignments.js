@@ -21,6 +21,8 @@ router.put('/updateassignment/:id/filepath/:filep', Assignment.updatefilepath);
 router.put('/updateassignment/:id/due/:newtime', Assignment.updatetime);
 //Update Marks
 router.put('/updateassignment/:id/marks/:newmarks', Assignment.updatemarks);
+//Update StudentFiles
+router.put('/updateassignment/:id/student/:sid/files', Assignment.updatestudentfile);
 
 //Delete Class
 router.delete('/delassignment/:id', Assignment.deleteassignment);
