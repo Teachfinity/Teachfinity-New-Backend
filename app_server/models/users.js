@@ -48,6 +48,13 @@ var userSchema = new Schema({
       },
     }]
   }, 
+  diary: {
+    type: [{
+      todo: {
+        type: String
+      }
+    }]
+  }
 });
 
 module.exports = mongoose.model('User', userSchema);

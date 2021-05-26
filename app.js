@@ -10,6 +10,7 @@ var classroomRouter = require('./app_server/routes/classes');
 var postRouter = require('./app_server/routes/posts');
 var meetingRouter = require('./app_server/routes/meetings');
 var assignmentRouter = require('./app_server/routes/assignments');
+var quizRouter = require('./app_server/routes/quizzes');
 var cors = require("cors") ;
 
 const connection = mongoose.connect('mongodb://localhost:27017/lms', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -35,6 +36,7 @@ app.use('/classes', classroomRouter);
 app.use('/posts', postRouter);
 app.use('/meetings', meetingRouter);
 app.use('/assignments', assignmentRouter);
+app.use('/quizzes', quizRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

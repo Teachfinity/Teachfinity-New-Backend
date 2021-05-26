@@ -94,6 +94,22 @@ module.exports.addassignment = function(req, res, next) {
             res.json(results);
         });
 }
+module.exports.addtask = function(req, res, next) {
+    User.findOneAndUpdate({uid: req.params.id}, {
+            "$push": {
+                "diary": {
+                    "todo": req.params.task
+                }
+            }
+        }, { new: true, upsert: false },
+        function(error, results) {
+            if (error) {
+                return next(error);
+            }
+            // Respond with valid data
+            res.json(results);
+        });
+}
 module.exports.updateuserpassword = function(req, res, next) {
     User.findOneAndUpdate({uid: req.params.id}, {password: req.params.password}, function(error, results) {
         if (error) {
@@ -111,6 +127,19 @@ module.exports.updateprofilepic = function(req, res, next) {
         // Respond with valid data
         res.json(results);
     });
+};
+module.exports.removetask = async function(req, res, next) {
+    await User.findOneAndUpdate({uid: req.params.id}, {$pull: {diary:{todo:
+       { $in: [
+            req.params.task
+          ] 
+        }
+        }}})
+    .then((response)=>{
+        console.log(response)
+res.send(response)
+    })
+        
 };
 module.exports.removeClassOwned = async function(req, res, next) {
     await User.findOneAndUpdate({uid: req.params.id}, {$pull: {classroomsOwned:{cid:

@@ -49,6 +49,14 @@ var classroomSchema = new Schema({
                 ref: "Assignment"
             }
         }]
+    },
+    quizzes: {
+        type: [{
+            qid:{
+                type: mongoose.Types.ObjectId,
+                ref: "Quiz"
+            }
+        }]
     }
 });
 

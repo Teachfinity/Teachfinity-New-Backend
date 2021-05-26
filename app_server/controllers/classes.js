@@ -65,6 +65,15 @@ module.exports.getassignments = function(req, res, next) {
         res.json(results[0].assignments);
     });
 }
+module.exports.getquizzes = function(req, res, next) {
+    Classroom.find({_id: req.params.cid}).populate('quizzes.qid').exec(function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results[0].quizzes);
+    });
+}
 module.exports.updateclassname = function(req, res, next) {
     Classroom.findByIdAndUpdate(req.params.id, {name: req.params.name}, function(error, results) {
         if (error) {
@@ -138,6 +147,22 @@ module.exports.addassignment = function(req, res, next) {
             res.json(results);
         });
 }
+module.exports.addquiz = function(req, res, next) {
+    Classroom.findOneAndUpdate({_id: req.params.cid}, {
+            "$push": {
+                "quizzes": {
+                    "qid": req.params.qid
+                }
+            }
+        }, { new: true, upsert: false },
+        function(error, results) {
+            if (error) {
+                return next(error);
+            }
+            // Respond with valid data
+            res.json(results);
+        });
+}
 module.exports.addteacher = function(req, res, next) {
     Classroom.findOneAndUpdate({ _id: req.params.cid }, { teacher: req.params.tid }, function(error, results) {
         if (error) {
@@ -158,6 +183,15 @@ module.exports.updateclasspassword = function(req, res, next) {
 };
 module.exports.removeassignment = function(req, res, next) {
     Classroom.findOneAndUpdate({_id: req.params.cid}, {$pull: {assignments:{_id: req.params.aid}}}, function(error, results) {
+        if (error) {
+            return next(error);
+        }
+        // Respond with valid data
+        res.json(results);
+    });
+};
+module.exports.removequiz = function(req, res, next) {
+    Classroom.findOneAndUpdate({_id: req.params.cid}, {$pull: {quizzes:{_id: req.params.qid}}}, function(error, results) {
         if (error) {
             return next(error);
         }

@@ -24,7 +24,11 @@ router.put('/updateuser/:id/password/:password', User.updateuserpassword);
 router.put('/updateuser/:id/profilePic', User.updateprofilepic);
 //Add Assignment
 router.put('/updateuser/:id/assignment/:aid', User.addassignment);
+//Add Task
+router.put('/updateuser/:id/task/:task', User.addtask);
 
+//Remove Task
+router.put('/updateuser/:id/removetask/:task', User.removetask);
 //Remove Classes Owned
 router.put('/updateuser/:id/removeclassowned/:cid', User.removeClassOwned);
 //Remove Classes Joined
