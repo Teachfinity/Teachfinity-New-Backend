@@ -83,6 +83,23 @@ module.exports.updatefilepath = function(req, res, next) {
         res.json(results);
     });
 };
+module.exports.studentmarks = function(req, res, next) {
+    Assignment.findByIdAndUpdate(req.params.id, {
+            "$push": {
+                "studentMarks": {
+                    "sid": req.params.sid,
+                    "marks": req.params.marks
+                }
+            }
+        }, { new: true, upsert: false },
+        function(error, results) {
+            if (error) {
+                return next(error);
+            }
+            
+            res.json(results);
+        });
+}
 module.exports.updatestudentfile = function(req, res, next) {
     Assignment.findByIdAndUpdate(req.params.id, {
             "$push": {

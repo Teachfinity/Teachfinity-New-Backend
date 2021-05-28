@@ -22,10 +22,14 @@ var assignmentSchema = new Schema({
     totalMarks: {
         type: Number,
     },
-    graded:{
-        type: Boolean,
-        default: false,
+    studentMarks: [{
+      sid: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User'
     },
+    marks: {
+      type: String
+    }}],
     studentfiles:{
         type: [{
             sid: {

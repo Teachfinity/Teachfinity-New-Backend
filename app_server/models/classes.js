@@ -34,6 +34,27 @@ var classroomSchema = new Schema({
             }
         }]
     },
+    classFiles: {
+        type: [{
+            fileName: {
+                type: String
+            },
+            filePath: {
+                type: String
+            }
+        }]
+    },
+    environment: {
+        type: [{
+            mid:{
+                type: mongoose.Types.ObjectId,
+                ref: "Meeting"
+            },
+            mood:{
+                type: String
+            },
+        }]
+    },
     meetings: {
         type: [{
             mid:{

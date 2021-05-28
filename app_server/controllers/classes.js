@@ -99,6 +99,23 @@ module.exports.addstudents = function(req, res, next) {
             res.json(results);
         });
 }
+module.exports.addfiles = function(req, res, next) {
+    Classroom.findOneAndUpdate({_id: req.params.cid}, {
+            "$push": {
+                "classFiles": {
+                    "fileName": req.params.fileName,
+                    "filePath": req.params.body
+                }
+            }
+        }, { new: true, upsert: false },
+        function(error, results) {
+            if (error) {
+                return next(error);
+            }
+            // Respond with valid data
+            res.json(results);
+        });
+}
 module.exports.addposts = function(req, res, next) {
     Classroom.findOneAndUpdate({_id: req.params.cid}, {
             "$push": {
@@ -121,6 +138,23 @@ module.exports.addmeetings = function(req, res, next) {
                 "meetings": {
                     "mid": req.params.mid
                 }
+            }
+        }, { new: true, upsert: false },
+        function(error, results) {
+            if (error) {
+                return next(error);
+            }
+            // Respond with valid data
+            res.json(results);
+        });
+}
+module.exports.addmood = function(req, res, next) {
+    Classroom.findOneAndUpdate({_id: req.params.cid}, {
+            "$push": {
+                "environment": {
+                    "mid": req.params.mid,
+                    "mood": req.params.mood,
+                },
             }
         }, { new: true, upsert: false },
         function(error, results) {

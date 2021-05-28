@@ -26,10 +26,14 @@ router.put('/updateclass/:id/name/:name', Classroom.updateclassname);
 router.put('/updateclass/:cid/teacher/:tid', Classroom.addteacher);
 //Add Students
 router.put('/updateclass/:cid/student/:sid', Classroom.addstudents);
+//Add Files
+router.put('/updateclass/:cid/file/:fileName', Classroom.addfiles);
 //Add Posts
 router.put('/updateclass/:cid/post/:pid', Classroom.addposts);
 //Add Meetings
 router.put('/updateclass/:cid/meeting/:mid', Classroom.addmeetings);
+//Add Mood
+router.put('/updateclass/:cid/meeting/:mid/mood/:mood', Classroom.addmood);
 //Add Assignments
 router.put('/updateclass/:cid/assignment/:aid', Classroom.addassignment);
 //Add Quizzes
