@@ -104,7 +104,7 @@ module.exports.addfiles = function(req, res, next) {
             "$push": {
                 "classFiles": {
                     "fileName": req.params.fileName,
-                    "filePath": req.params.body
+                    "filePath": req.body.filePath
                 }
             }
         }, { new: true, upsert: false },
