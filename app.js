@@ -12,12 +12,18 @@ var meetingRouter = require('./app_server/routes/meetings');
 var assignmentRouter = require('./app_server/routes/assignments');
 var quizRouter = require('./app_server/routes/quizzes');
 var cors = require("cors") ;
+const connectDB = require("./db");
 
-const connection = mongoose.connect('mongodb://localhost:27017/lms', { useNewUrlParser: true, useUnifiedTopology: true });
+/* const connection = mongoose.connect('mongodb://localhost:27017/lms', { useNewUrlParser: true, useUnifiedTopology: true });
+ */
 var app = express();
-connection.then((db) => {
+
+/* connection.then((db) => {
   console.log("Connected correctly to server");
-}, (err) => { console.log(err); });
+}, (err) => { console.log(err); }); */
+
+// Connect to DB
+connectDB();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
